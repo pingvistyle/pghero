@@ -380,7 +380,7 @@ module PgHero
     def group_connections(connection_sources, key)
       top_connections = Hash.new(0)
       connection_sources.each do |source|
-        top_connections[source[key]] += source[:total_connections]
+        top_connections[source[key]] += source[:total_connections] if source[key].present?
       end
       top_connections.sort_by { |k, v| [-v, k] }
     end
